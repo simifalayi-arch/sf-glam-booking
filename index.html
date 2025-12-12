@@ -3,203 +3,198 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SF Glam | Book Makeup</title>
+<title>SF Glam | Book Appointment</title>
 
 <style>
-:root{
-  --pink:#ff4fb8;
-  --pink2:#ff8ad6;
-  --bg:#faf7fb;
-  --card:#ffffff;
-  --text:#141018;
-  --muted:#6e6476;
-  --line:#eadff0;
-}
-*{box-sizing:border-box}
 body{
   margin:0;
-  font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial;
-  background:
-    radial-gradient(1200px 500px at 20% 0%, rgba(255,79,184,.18), transparent 60%),
-    radial-gradient(900px 500px at 85% 10%, rgba(255,138,214,.15), transparent 60%),
-    var(--bg);
-  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial;
+  background:#f9f9f9;
+  color:#111;
 }
-.container{max-width:1050px;margin:auto;padding:30px 16px 60px}
-header{
-  display:flex;justify-content:space-between;align-items:center;margin-bottom:30px
+.container{
+  max-width:680px;
+  margin:auto;
+  padding:24px 16px 60px;
 }
-.brand{display:flex;gap:12px;align-items:center}
-.logo{
-  width:46px;height:46px;border-radius:14px;
-  background:linear-gradient(135deg,var(--pink),var(--pink2))
-}
-.hero{
-  text-align:center;margin-bottom:40px
-}
-.hero h1{margin:0;font-size:32px}
-.hero p{margin:10px auto 0;color:var(--muted);max-width:520px}
-.deposit{
-  margin-top:14px;
-  display:inline-block;
-  padding:10px 14px;
-  border-radius:999px;
-  background:#fff;
-  border:1px solid var(--line);
-  font-size:14px
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:1.4fr .9fr;
-  gap:20px
-}
-@media(max-width:900px){.grid{grid-template-columns:1fr}}
-
-.card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:20px
-}
-
-.services{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:14px
-}
-@media(max-width:800px){.services{grid-template-columns:1fr}}
+h1{text-align:center;margin-bottom:6px}
+.subtitle{text-align:center;color:#666;margin-bottom:28px}
 
 .service{
-  border:1px solid var(--line);
   border-radius:16px;
-  padding:16px;
+  overflow:hidden;
+  margin-bottom:20px;
   cursor:pointer;
+  background-size:cover;
+  background-position:center;
+  color:#fff;
 }
-.service.selected{
-  border-color:var(--pink);
-  background:rgba(255,79,184,.08)
+.overlay{
+  background:rgba(0,0,0,.45);
+  padding:18px;
 }
-.service h3{margin:0}
-.service small{color:var(--muted)}
-.price{margin-top:10px;font-weight:800}
+.service h2{margin:0}
+.service small{opacity:.9}
 
-label{font-size:12px;color:var(--muted)}
-input,textarea,select{
+.details{
+  display:none;
+  background:#fff;
+  color:#111;
+  padding:16px;
+}
+
+label{font-size:12px;color:#555}
+input,select{
   width:100%;
-  padding:11px 12px;
+  padding:10px;
   margin-top:6px;
   margin-bottom:12px;
-  border-radius:14px;
-  border:1px solid var(--line)
+  border-radius:10px;
+  border:1px solid #ddd;
+}
+
+.time-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+.time{
+  padding:10px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  text-align:center;
+  cursor:pointer;
+}
+.time.selected{
+  background:#111;
+  color:#fff;
 }
 
 button{
   width:100%;
   padding:14px;
-  border-radius:14px;
+  border-radius:12px;
   border:none;
-  background:linear-gradient(135deg,var(--pink),var(--pink2));
+  background:#000;
   color:#fff;
-  font-weight:800;
+  font-weight:700;
   font-size:16px;
-  cursor:pointer
 }
-button:disabled{opacity:.5}
 
-.summary{
-  position:sticky;top:20px
+.deposit{
+  text-align:center;
+  margin-top:14px;
+  font-size:14px;
+  color:#444;
 }
-.item{margin-bottom:12px}
-.k{font-size:12px;color:var(--muted)}
-.v{font-weight:700}
-
-footer{text-align:center;margin-top:40px;font-size:12px;color:#777}
 </style>
 </head>
 
 <body>
 <div class="container">
 
-<header>
-  <div class="brand">
-    <div class="logo"></div>
-    <strong>SF Glam</strong>
-  </div>
-</header>
+<h1>SF Glam</h1>
+<p class="subtitle">Select a service to book your appointment</p>
 
-<section class="hero">
-  <h1>Book Your Makeup Appointment</h1>
-  <p>Soft glam, full glam, and freestyle looks tailored to you.</p>
+<!-- SOFT GLAM -->
+<div class="service" style="background-image:url('images/soft-glam.jpg')" onclick="openService(0)">
+  <div class="overlay">
+    <h2>Soft Glam</h2>
+    <small>$60 • 1 hr 15 min</small>
+  </div>
+</div>
+
+<!-- FULL GLAM -->
+<div class="service" style="background-image:url('images/full-glam.jpg')" onclick="openService(1)">
+  <div class="overlay">
+    <h2>Full Glam</h2>
+    <small>$75 • 2 hr 15 min</small>
+  </div>
+</div>
+
+<!-- FREESTYLE -->
+<div class="service" style="background-image:url('images/freestyle.jpg')" onclick="openService(2)">
+  <div class="overlay">
+    <h2>Freestyle</h2>
+    <small>Starting at $65 • 1 hr 30 min+</small>
+  </div>
+</div>
+
+<div class="details" id="details">
+  <label>Name</label>
+  <input id="name">
+
+  <label>Phone</label>
+  <input id="phone">
+
+  <label>Email</label>
+  <input id="email">
+
+  <label>Date</label>
+  <input type="date" id="date">
+
+  <label>Time</label>
+  <div class="time-grid" id="times"></div>
+
+  <button onclick="submitBooking()">Confirm Booking</button>
+
   <div class="deposit">
-    $30 non-refundable deposit via Cash App • <strong>$sfalayi3</strong>
+    $30 non-refundable deposit via Cash App<br>
+    <strong>$sfalayi3</strong>
   </div>
-</section>
-
-<div class="grid">
-<div class="card">
-<h2>Choose a Service</h2>
-
-<div class="services" id="services"></div>
-
-<h3 style="margin-top:25px">Your Info</h3>
-<input id="name" placeholder="Full Name">
-<input id="email" placeholder="Email">
-<input id="phone" placeholder="Phone">
-<input id="date" type="date">
-<input id="time" type="time">
-<textarea id="notes" placeholder="Notes (optional)"></textarea>
-
-<button id="book" disabled>Submit Booking</button>
 </div>
 
-<div class="card summary">
-<h2>Summary</h2>
-<div class="item"><div class="k">Service</div><div class="v" id="sService">—</div></div>
-<div class="item"><div class="k">Duration</div><div class="v" id="sDuration">—</div></div>
-<div class="item"><div class="k">Total</div><div class="v" id="sTotal">$0</div></div>
-<div class="item"><small>Deposit: $30 via Cash App</small></div>
 </div>
-</div>
-
-<footer>© SF Glam</footer>
 
 <script>
 const services=[
- {name:"Soft Glam",price:"$60",duration:"1 hr 15 min"},
- {name:"Full Glam",price:"$75",duration:"2 hr 15 min"},
- {name:"Freestyle",price:"$65+",duration:"1 hr +"}
+ {name:"Soft Glam",duration:75},
+ {name:"Full Glam",duration:135},
+ {name:"Freestyle",duration:90}
 ];
-let selected=null;
 
-const wrap=document.getElementById("services");
-const sService=document.getElementById("sService");
-const sDuration=document.getElementById("sDuration");
-const sTotal=document.getElementById("sTotal");
-const book=document.getElementById("book");
+let selectedService=null;
+let selectedTime=null;
 
-function render(){
- wrap.innerHTML="";
- services.forEach(s=>{
-  const d=document.createElement("div");
-  d.className="service"+(selected===s.name?" selected":"");
-  d.innerHTML=`
-    <h3>${s.name}</h3>
-    <small>${s.duration}</small>
-    <div class="price">${s.price}</div>
-  `;
-  d.onclick=()=>{selected=s.name;render();update(s)};
-  wrap.appendChild(d);
- });
+function openService(i){
+ selectedService=services[i];
+ document.getElementById("details").style.display="block";
+ generateTimes();
 }
-function update(s){
- sService.textContent=s.name;
- sDuration.textContent=s.duration;
- sTotal.textContent=s.price;
- book.disabled=!(name.value&&email.value&&phone.value&&date.value&&time.value);
+
+function generateTimes(){
+ const grid=document.getElementById("times");
+ grid.innerHTML="";
+ selectedTime=null;
+
+ const start=9*60;
+ const end=18*60;
+
+ for(let t=start;t+selectedService.duration<=end;t+=30){
+  const h=Math.floor(t/60);
+  const m=t%60;
+  const label=((h%12)||12)+":"+(m?"30":"00")+" "+(h<12?"AM":"PM");
+  const div=document.createElement("div");
+  div.className="time";
+  div.textContent=label;
+  div.onclick=()=>{document.querySelectorAll(".time").forEach(x=>x.classList.remove("selected"));div.classList.add("selected");selectedTime=label;}
+  grid.appendChild(div);
+ }
 }
-[name,email,phone,date,time].forEach(i=>i.oninput=()=>selected&&update(services.find(x=>x.name===selected)));
-render();
+
+function submitBooking(){
+ if(!name.value||!phone.value||!email.value||!date.value||!selectedTime){
+  alert("Please complete all fields");
+  return;
+ }
+ alert(
+  "Booking Requested!\n\n"+
+  selectedService.name+"\n"+
+  date.value+" at "+selectedTime+"\n\n"+
+  "Send $30 deposit to $sfalayi3"
+ );
+}
 </script>
+
 </body>
 </html>
