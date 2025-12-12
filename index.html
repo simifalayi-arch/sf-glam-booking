@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<title>SF Glam Admin</title>
+<style>
+body{font-family:Arial;padding:20px}
+.card{border:1px solid #ccc;padding:12px;margin-bottom:10px}
+</style>
+</head>
+<body>
+<h1>SF Glam – Admin Bookings</h1>
+<div id="list"></div>
+
+<script>
+const list=document.getElementById("list");
+const bookings=JSON.parse(localStorage.getItem("sfBookings")||"[]");
+
+if(bookings.length===0){
+ list.innerHTML="No bookings yet.";
+}else{
+ bookings.forEach(b=>{
+  list.innerHTML+=`
+   <div class="card">
+   <b>${b.name}</b><br>
+   ${b.service} (${b.price})<br>
+   ${b.date} @ ${b.time}<br>
+   ${b.email} | ${b.phone}<br>
+   Notes: ${b.notes||"—"}
+   </div>`;
+ });
+}
+</script>
+</body>
+</html>
